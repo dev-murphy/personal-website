@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1](https://github.com/dev-murphy/personal-website/compare/v1.0.0...v1.0.1) (2026-05-24)
+
+### 🔨 Code Refactors
+
+* expose app on port 3002 ([f41ed6a](https://github.com/dev-murphy/personal-website/commit/f41ed6ab53b92440a15024db3aecb03af5754cad))
+
 ## 1.0.0 (2026-05-24)
 
 ### ✨ Features
