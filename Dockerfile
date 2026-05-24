@@ -20,10 +20,12 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=3002
 
 # Copy built output from builder
 COPY --from=builder /app/.output /app/.output
 
-EXPOSE 3000
+EXPOSE 3002
 
 CMD ["node", ".output/server/index.mjs"]
