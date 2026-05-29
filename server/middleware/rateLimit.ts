@@ -4,6 +4,11 @@ const LIMIT = 60; // requests
 const WINDOW = 60; // seconds
 
 export default defineEventHandler(async (event) => {
+  const path = event.path;
+
+  // Skip rate limiting for internal Nuxt/prerender requests
+  if (path.startsWith("/__nuxt") || path.startsWith("/_nuxt")) return;
+
   const ip =
     getRequestHeader(event, "x-forwarded-for")?.split(",")[0]!.trim() ??
     event.node.req.socket.remoteAddress ??
@@ -11,10 +16,20 @@ export default defineEventHandler(async (event) => {
 
   const key = `rl:${ip}`;
   const redis = getRedis();
+  if (!redis) return;
 
-  const count = await redis.incr(key);
-  if (count === 1) {
-    await redis.expire(key, WINDOW);
+  let count: number;
+  try {
+    count = await redis.incr(key);
+    if (count === 1) {
+      await redis.expire(key, WINDOW);
+    }
+  } catch (err) {
+    // Redis is unreachable — fail open rather than blocking the request.
+    console.error(
+      `⚠️  Rate limiting skipped — Redis command failed: ${(err as Error).message}`,
+    );
+    return;
   }
 
   setResponseHeader(event, "X-RateLimit-Limit", String(LIMIT));
