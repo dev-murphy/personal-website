@@ -37,7 +37,7 @@ const closeMenu = () => {
         to="/"
         class="font-geist-mono text-sm tracking-tight text-text-100 hover:text-primary transition-colors"
       >
-        <span class="text-primary">~</span>/murphy.dev
+        <span class="text-primary">~</span>/zenithcodes.xyz
       </NuxtLink>
 
       <!-- Desktop Menu -->
