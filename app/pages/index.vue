@@ -207,7 +207,7 @@ useSeoMeta({
           number="04"
           kicker="Reach out"
           title="Get in touch"
-          meta="quick reply"
+          meta="Quick Replies"
         />
 
         <FadeInSection>
