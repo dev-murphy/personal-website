@@ -6,8 +6,8 @@ WORKDIR /app
 # Add Python and build tools needed for better-sqlite3
 RUN apk add --no-cache python3 make g++
 
-# Enable pnpm via corepack
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable pnpm via corepack (pin to the version in package.json#packageManager)
+RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
 
 # Copy lockfile and package manifest, then install dependencies
 COPY package.json pnpm-lock.yaml ./
@@ -21,6 +21,11 @@ RUN pnpm run build
 FROM node:20-alpine AS runner
 
 WORKDIR /app
+
+# better-sqlite3 (via @nuxt/content) is a native addon that links against
+# libstdc++ at runtime. node:alpine doesn't ship it, so the server would crash
+# on startup with "Error loading shared library libstdc++.so.6".
+RUN apk add --no-cache libstdc++
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
