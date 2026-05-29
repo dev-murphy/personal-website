@@ -2,7 +2,6 @@ export const useActiveSection = (sectionIds: string[]) => {
   const activeSection = ref<string | null>(null);
   const observers: IntersectionObserver[] = [];
   const visible = new Map<string, number>();
-
   const recompute = () => {
     const atBottom =
       window.scrollY + window.innerHeight >=
@@ -24,7 +23,14 @@ export const useActiveSection = (sectionIds: string[]) => {
     if (best) activeSection.value = best;
   };
 
-  onMounted(() => {
+  const teardown = () => {
+    observers.forEach((o) => o.disconnect());
+    observers.length = 0;
+    visible.clear();
+  };
+
+  const setup = () => {
+    teardown();
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -44,12 +50,30 @@ export const useActiveSection = (sectionIds: string[]) => {
       observer.observe(el);
       observers.push(observer);
     });
+  };
 
+  let unhookPageFinish: (() => void) | undefined;
+
+  onMounted(() => {
     useEventListener(window, "scroll", recompute, { passive: true });
+    setup();
+
+    // The header lives in the layout, so it isn't remounted on navigation. The
+    // section elements, however, are destroyed and recreated when the page that
+    // owns them unmounts and remounts (e.g. home -> changelog -> home). Re-run
+    // observer setup after each navigation so we always observe the live nodes.
+    // page:finish fires once the destination page's DOM has actually rendered
+    // (after Suspense resolves) — a plain route watch + nextTick runs too early.
+    const nuxtApp = useNuxtApp();
+    unhookPageFinish = nuxtApp.hook("page:finish", () => {
+      activeSection.value = null;
+      setup();
+    });
   });
 
   onBeforeUnmount(() => {
-    observers.forEach((o) => o.disconnect());
+    teardown();
+    unhookPageFinish?.();
   });
 
   return activeSection;

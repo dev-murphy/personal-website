@@ -60,7 +60,12 @@ const closeMenu = () => {
             </a>
           </li>
         </ul>
-        <NuxtLink v-else to="/" class="pr-4 transition-colors text-text-200 hover:text-text-100">home</NuxtLink>
+        <NuxtLink
+          v-else
+          to="/"
+          class="pr-4 font-geist-mono text-sm transition-colors text-text-200 hover:text-text-100"
+          >home</NuxtLink
+        >
 
         <ul class="flex items-center gap-x-5 px-4 font-geist-mono text-sm">
           <li v-for="link in pageLinks" :key="link.label">
@@ -143,6 +148,12 @@ const closeMenu = () => {
           // Pages
         </p>
         <NuxtLink
+          v-if="!isHome"
+          to="/"
+          class="block px-4 py-3 border-t border-border-100 text-text-200 hover:text-text-100 transition-colors"
+          >home</NuxtLink
+        >
+        <NuxtLink
           v-for="link in pageLinks"
           :key="link.label"
           :to="link.href"
@@ -157,7 +168,7 @@ const closeMenu = () => {
         >
           <div class="flex items-center gap-x-2">
             <p>
-              <span :class="{ 'font-black': !isDark }">Light</span> / 
+              <span :class="{ 'font-black': !isDark }">Light</span> /
               <span :class="{ 'font-black': isDark }">Dark</span>
             </p>
             <XThemeToggle />
