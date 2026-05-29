@@ -138,8 +138,8 @@ useSeoMeta({
       <section id="stack" class="pb-24 scroll-mt-14">
         <SectionHeader
           number="01"
-          kicker="Stack"
-          title="Tools & Languages"
+          kicker="tools"
+          title="Tech Stack"
           :meta="`${languages.length + frameworks.length} TECHNOLOGIES`"
         />
 
@@ -186,7 +186,7 @@ useSeoMeta({
         <SectionHeader
           number="03"
           kicker="Work"
-          title="Selected Projects"
+          title="Projects"
           :meta="`${projects.length} PROJECTS`"
         />
 
@@ -207,7 +207,7 @@ useSeoMeta({
           number="04"
           kicker="Reach out"
           title="Get in touch"
-          meta="REPLIES WITHIN 2 DAYS"
+          meta="quick reply"
         />
 
         <FadeInSection>
