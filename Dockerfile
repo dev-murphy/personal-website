@@ -3,6 +3,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Add Python and build tools needed for better-sqlite3
+RUN apk add --no-cache python3 make g++
+
 # Enable pnpm via corepack
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
