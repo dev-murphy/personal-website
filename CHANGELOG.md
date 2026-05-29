@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.2](https://github.com/dev-murphy/personal-website/compare/v1.1.1...v1.1.2) (2026-05-29)
+
+### 📖 Documentation
+
+* add basic project information ([7dfec15](https://github.com/dev-murphy/personal-website/commit/7dfec15334877ef4950f325473ae200e3b549621))
+
+### ⚙️ CI/CD
+
+* resolve better-sqlite3 dependency issue ([5791055](https://github.com/dev-murphy/personal-website/commit/5791055de213bf822d2286aaa9e734a588ed7522))
+
 ## [1.1.1](https://github.com/dev-murphy/personal-website/compare/v1.1.0...v1.1.1) (2026-05-29)
 
 ### ⚙️ CI/CD
