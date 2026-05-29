@@ -1,1 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap');
 @import "tailwindcss";
+@theme {
+  --font-syne: "Syne", sans-serif;
+  --font-ibm-plex-mono: "IBM Plex Mono", monospace;
+  --font-geist-mono: "Geist Mono", monospace;
+
+  /* Colors */
+  --color-background-100: #f0f5f2;
+  --color-background-200: #e0ebe5;
+  --color-primary: #2aad57;
+  --color-secondary: #578066;
+  --color-border-100: #c8d4ce;
+  --color-border-200: #dce8e2;
+  --color-text-100: #0a0f0c;
+  --color-text-200: #4a524e;
+  --color-text-300: #8a9992;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-rise,
+  .marquee-anim,
+  .animate-ping {
+    animation: none !important;
+  }
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-background-100);
+}
+
+@keyframes hero-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dark-mode {
+  --color-background-100: #090f0b;
+  --color-background-200: #0f1814;
+  --color-primary: #4fd47e;
+  --color-secondary: #578066;
+  --color-border-100: #242a28;
+  --color-border-200: #0e1410;
+  --color-text-100: #ffffff;
+  --color-text-200: #abafad;
+  --color-text-300: #333e38;
+}
