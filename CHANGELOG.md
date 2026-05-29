@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1](https://github.com/dev-murphy/personal-website/compare/v1.2.0...v1.2.1) (2026-05-29)
+
+### 🐛 Bug Fixes
+
+* add password for redis connection ([cafc84f](https://github.com/dev-murphy/personal-website/commit/cafc84f3db37cc0210d1fd3406db68d29a26bf8c))
+
 ## [1.2.0](https://github.com/dev-murphy/personal-website/compare/v1.1.3...v1.2.0) (2026-05-29)
 
 ### ✨ Features
