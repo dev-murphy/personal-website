@@ -60,8 +60,9 @@ const closeMenu = () => {
             </a>
           </li>
         </ul>
+        <NuxtLink v-else to="/" class="pr-4 transition-colors text-text-200 hover:text-text-100">home</NuxtLink>
 
-        <ul class="flex items-center gap-x-5 px-3 font-geist-mono text-sm">
+        <ul class="flex items-center gap-x-5 px-4 font-geist-mono text-sm">
           <li v-for="link in pageLinks" :key="link.label">
             <NuxtLink
               :to="link.href"
