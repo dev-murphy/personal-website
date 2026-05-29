@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1](https://github.com/dev-murphy/personal-website/compare/v1.1.0...v1.1.1) (2026-05-29)
+
+### ⚙️ CI/CD
+
+* add external dependency for better-sqlite3 to Dockerfile ([dbce282](https://github.com/dev-murphy/personal-website/commit/dbce282473c91d79d836a42f85855fad307e0409))
+
 ## [1.1.0](https://github.com/dev-murphy/personal-website/compare/v1.0.1...v1.1.0) (2026-05-29)
 
 ### ✨ Features
