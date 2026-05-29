@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.3](https://github.com/dev-murphy/personal-website/compare/v1.1.2...v1.1.3) (2026-05-29)
+
+### 🐛 Bug Fixes
+
+* resolve 500 error from conflicting unhead versions ([22af12f](https://github.com/dev-murphy/personal-website/commit/22af12f43a806af0c8b14478362f1069a108c3f3))
+
 ## [1.1.2](https://github.com/dev-murphy/personal-website/compare/v1.1.1...v1.1.2) (2026-05-29)
 
 ### 📖 Documentation
