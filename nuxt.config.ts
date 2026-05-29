@@ -1,4 +1,24 @@
+import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import tailwindcss from "@tailwindcss/vite";
+
+// CHANGELOG.md lives at the repo root (the source of truth maintained by
+// semantic-release). Copy it into server/assets at config load so Nitro bundles
+// it as a server asset (mounted under "assets:server") into .output. The
+// /api/changelog endpoint then reads it via useStorage, independent of the
+// runtime working directory — unlike reading the root file off disk, which is
+// absent from the production image. This runs only at build/dev time (the
+// config isn't evaluated in the production runtime), so the bundled copy is
+// always current as of the build.
+const rootDir = dirname(fileURLToPath(import.meta.url));
+const changelogSrc = resolve(rootDir, "CHANGELOG.md");
+if (existsSync(changelogSrc)) {
+  const serverAssetsDir = resolve(rootDir, "server/assets");
+  mkdirSync(serverAssetsDir, { recursive: true });
+  copyFileSync(changelogSrc, resolve(serverAssetsDir, "CHANGELOG.md"));
+}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

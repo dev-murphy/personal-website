@@ -10,6 +10,9 @@ dist
 # Node dependencies
 node_modules
 
+# Generated at build time from the root CHANGELOG.md (see nuxt.config.ts)
+server/assets/CHANGELOG.md
+
 # Logs
 logs
 *.log
