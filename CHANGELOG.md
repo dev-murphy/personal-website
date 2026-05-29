@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.2.0](https://github.com/dev-murphy/personal-website/compare/v1.1.3...v1.2.0) (2026-05-29)
+
+### ✨ Features
+
+* add changelog page ([23c104f](https://github.com/dev-murphy/personal-website/commit/23c104fcd6010a090aad52eb30daf468c12b1e07))
+
+### 🐛 Bug Fixes
+
+* add retry logic to redis connection and remove it from the build process ([6ad12fc](https://github.com/dev-murphy/personal-website/commit/6ad12fc0525637c9aae1e65247d79e6357c146bb))
+
+### 🧹 Miscellaneous
+
+* add home link on navbar for pages ([069a6be](https://github.com/dev-murphy/personal-website/commit/069a6be550d4937ddf4665ad423d68e4fd7ae7fa))
+* add rate limiting ([cd5a055](https://github.com/dev-murphy/personal-website/commit/cd5a05557f71d5787b13b2751c4fcd4909458355))
+* change to contact us meta to "Quick Replies" ([7f579bb](https://github.com/dev-murphy/personal-website/commit/7f579bba567452f692fac76852a062989a95fa67))
+* update app name in header ([be46a34](https://github.com/dev-murphy/personal-website/commit/be46a342841473cf97f69694725c52e4827caee5))
+* use env value for docker compose ([b9fe2fb](https://github.com/dev-murphy/personal-website/commit/b9fe2fb9a8df05dc085c59bc58825b25cc28201b))
+
+### ⚙️ CI/CD
+
+* add docker compose file ([4a881ec](https://github.com/dev-murphy/personal-website/commit/4a881ece757d16ad46b10d04c39b37906f069f10))
+
+### 💅 UI Updates
+
+* reduce heading text ([ed1ccd0](https://github.com/dev-murphy/personal-website/commit/ed1ccd01f2eae0b87223c8afeb1ad1dc5b4dd9ac))
+
 ## [1.1.3](https://github.com/dev-murphy/personal-website/compare/v1.1.2...v1.1.3) (2026-05-29)
 
 ### 🐛 Bug Fixes
