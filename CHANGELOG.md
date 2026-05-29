@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.3](https://github.com/dev-murphy/personal-website/compare/v1.2.2...v1.2.3) (2026-05-29)
+
+### 🐛 Bug Fixes
+
+* keep section highlight working after returning to home ([80b2967](https://github.com/dev-murphy/personal-website/commit/80b2967179eb025cf9594845aad330a4bd7b6999))
+
 ## [1.2.2](https://github.com/dev-murphy/personal-website/compare/v1.2.1...v1.2.2) (2026-05-29)
 
 ### 🐛 Bug Fixes
