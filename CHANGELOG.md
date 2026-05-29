@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.2](https://github.com/dev-murphy/personal-website/compare/v1.2.1...v1.2.2) (2026-05-29)
+
+### 🐛 Bug Fixes
+
+* serve changelog from bundled server asset ([79d74e3](https://github.com/dev-murphy/personal-website/commit/79d74e3b225fbb7b6113c66596ee261dc0fdf4ee))
+
 ## [1.2.1](https://github.com/dev-murphy/personal-website/compare/v1.2.0...v1.2.1) (2026-05-29)
 
 ### 🐛 Bug Fixes
