@@ -169,6 +169,21 @@ useSeoMeta({
         </aside>
       </div>
 
+      <!-- Engagement: likes, reactions, comments (client-only — counts and
+           session state are resolved in the browser) -->
+      <ClientOnly>
+        <section class="mt-16 pt-10 border-t border-border-100">
+          <div class="flex flex-wrap items-center gap-3">
+            <BlogLikes :slug="post.path" />
+            <BlogReactions :slug="post.path" />
+          </div>
+        </section>
+
+        <div class="mt-16">
+          <BlogComments :slug="post.path" />
+        </div>
+      </ClientOnly>
+
       <!-- Keep reading -->
       <section v-if="related?.length" class="mt-20 pt-10 border-t border-border-100">
         <div class="flex items-center gap-x-3">

@@ -38,6 +38,13 @@ export default defineNuxtConfig({
     "nuxt-charts",
   ],
 
+  // Runtime Config
+  runtimeConfig: {
+    public: {
+      pocketbaseUrl: process.env.POCKETBASE_URL
+    }
+  },
+
   // Assets
   css: ["~/assets/css/main.css"],
 
