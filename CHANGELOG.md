@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.0](https://github.com/dev-murphy/personal-website/compare/v1.3.3...v1.4.0) (2026-05-31)
+
+### ✨ Features
+
+* **blog:** make likes and reactions realtime ([cd4729b](https://github.com/dev-murphy/personal-website/commit/cd4729bbbb3cefca0496d6fcf916fd959443e57c))
+
+### ⚡ Performance Improvements
+
+* **docker:** cache deps across deploys to speed up image builds ([ff77aa8](https://github.com/dev-murphy/personal-website/commit/ff77aa87a78deb9a160c42994f76a1a408ebd444))
+
 ## [1.3.3](https://github.com/dev-murphy/personal-website/compare/v1.3.2...v1.3.3) (2026-05-31)
 
 ### 🧹 Miscellaneous
