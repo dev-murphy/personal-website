@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/dev-murphy/personal-website/compare/v1.4.0...v1.5.0) (2026-05-31)
+
+### ✨ Features
+
+* **blog:** support anonymous comments and content filtering ([dc832b4](https://github.com/dev-murphy/personal-website/commit/dc832b4f7f09d907f1e88681c51d56b2207a8836))
+* **projects:** add projects catalog with filtering and realtime ([001c6db](https://github.com/dev-murphy/personal-website/commit/001c6dbdfe71571496d5fd5cc3d05038e180f83d))
+
+### 🐛 Bug Fixes
+
+* **app:** wrapped theme toggle in client only to prevent hydration mishaps ([c7a7ce0](https://github.com/dev-murphy/personal-website/commit/c7a7ce00fda5fbaf7f3845e034f57fa3de8501c4))
+* **auth:** prevent Safari popup block and force Google account chooser ([c35728c](https://github.com/dev-murphy/personal-website/commit/c35728c19fe457077d1369c6dc346ed3167c2229))
+
 ## [1.4.0](https://github.com/dev-murphy/personal-website/compare/v1.3.3...v1.4.0) (2026-05-31)
 
 ### ✨ Features
