@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.2](https://github.com/dev-murphy/personal-website/compare/v1.3.1...v1.3.2) (2026-05-31)
+
+### 🐛 Bug Fixes
+
+* inject PocketBase URL at runtime via NUXT_PUBLIC_ prefix ([d00fe5a](https://github.com/dev-murphy/personal-website/commit/d00fe5ae68739fa83748d396e2a99a1517010c85))
+
 ## [1.3.1](https://github.com/dev-murphy/personal-website/compare/v1.3.0...v1.3.1) (2026-05-31)
 
 ### 🐛 Bug Fixes
