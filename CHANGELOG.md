@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.3.0](https://github.com/dev-murphy/personal-website/compare/v1.2.3...v1.3.0) (2026-05-31)
+
+### ✨ Features
+
+* add blog engagement features with PocketBase backend ([a1211a1](https://github.com/dev-murphy/personal-website/commit/a1211a1ea29e0dda45b969d0e9d504defdfa752a))
+* create blog pages ([ab00060](https://github.com/dev-murphy/personal-website/commit/ab00060a625b2f31cdd5e19c29b82d8348e1f8d3))
+
+### 🐛 Bug Fixes
+
+* resolve type errors in BlogChart and ProsePre ([b922e8a](https://github.com/dev-murphy/personal-website/commit/b922e8ad89c0b19b7199d2ad051ea07c90b46281))
+
+### 🧹 Miscellaneous
+
+* add arrow and clock icon for blog pages ([5b078ae](https://github.com/dev-murphy/personal-website/commit/5b078ae6e958d3f6592bde9b563bc6e8285e7264))
+* add blogs folder and schema to content config ([2025af6](https://github.com/dev-murphy/personal-website/commit/2025af657bcaa05a1245bbcdac9c4cce1a7587d5))
+* add content component for blog pages ([32cf6d9](https://github.com/dev-murphy/personal-website/commit/32cf6d903cf9c16d7f7c39098dcbb45fee2ede94))
+* install nuxt-charts deps to app ([54cffa1](https://github.com/dev-murphy/personal-website/commit/54cffa1afeab50a7d8567b4dee260b19a4e5db27))
+
+### 📖 Documentation
+
+* create first blog post ([77180d5](https://github.com/dev-murphy/personal-website/commit/77180d5dedd834da7a3c5098b82d172b93dc97b6))
+
+### 💅 UI Updates
+
+* configure shiki theme and markdown languages and site name ([b12bbf5](https://github.com/dev-murphy/personal-website/commit/b12bbf52eb09d95c4d276cca48f1ac9ba1c8aa39))
+
 ## [1.2.3](https://github.com/dev-murphy/personal-website/compare/v1.2.2...v1.2.3) (2026-05-29)
 
 ### 🐛 Bug Fixes
