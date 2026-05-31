@@ -1,28 +1,37 @@
 export const useLikes = (postSlug: string) => {
   const pb = usePocketbase();
+  const sessionId = useBlogSession();
 
-  const count = ref(0);
-  const liked = ref(false);
+  // Track like record ids in a Set so an optimistic write and its realtime
+  // echo collapse to a single entry — the count is always the set size and can
+  // never double-count.
+  const ids = ref<Set<string>>(new Set());
+  const myLikeId = ref<string | null>(null);
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  const sessionId = useBlogSession();
+  const count = computed(() => ids.value.size);
+  const liked = computed(() => myLikeId.value !== null);
+
+  const addId = (id: string) => {
+    const next = new Set(ids.value);
+    next.add(id);
+    ids.value = next;
+  };
+
+  const removeId = (id: string) => {
+    const next = new Set(ids.value);
+    next.delete(id);
+    ids.value = next;
+  };
 
   const fetch = async () => {
-    const [records, myLike] = await Promise.all([
-      pb.collection("likes").getList(1, 1, {
-        filter: `post_slug = "${postSlug}"`,
-      }),
-      pb
-        .collection("likes")
-        .getFirstListItem(
-          `post_slug = "${postSlug}" && session_id = "${sessionId.value}"`,
-        )
-        .catch(() => null),
-    ]);
-
-    count.value = records.totalItems;
-    liked.value = !!myLike;
+    const records = await pb.collection("likes").getFullList({
+      filter: `post_slug = "${postSlug}"`,
+    });
+    ids.value = new Set(records.map((r) => r.id));
+    myLikeId.value =
+      records.find((r) => r.session_id === sessionId.value)?.id ?? null;
   };
 
   const toggle = async () => {
@@ -31,30 +40,25 @@ export const useLikes = (postSlug: string) => {
     error.value = null;
 
     try {
-      if (liked.value) {
-        // Find and delete own like
-        const record = await pb
-          .collection("likes")
-          .getFirstListItem(
-            `post_slug = "${postSlug}" && session_id = "${sessionId.value}"`,
-          );
-        await pb.collection("likes").delete(record.id);
-        liked.value = false;
-        count.value = Math.max(0, count.value - 1);
+      if (myLikeId.value) {
+        const id = myLikeId.value;
+        await pb.collection("likes").delete(id);
+        removeId(id);
+        myLikeId.value = null;
       } else {
-        await pb.collection("likes").create({
+        const record = await pb.collection("likes").create({
           post_slug: postSlug,
           session_id: sessionId.value,
         });
-        liked.value = true;
-        count.value += 1;
+        addId(record.id);
+        myLikeId.value = record.id;
       }
     } catch (e: any) {
-      // Duplicate key = already liked — sync state rather than surface an error.
+      // Duplicate key = already liked — resync rather than surface an error.
       if (e?.status === 400) {
-        liked.value = true;
+        await fetch().catch(() => {});
       } else {
-        error.value = liked.value
+        error.value = myLikeId.value
           ? "Couldn't remove your like. Please try again."
           : "Couldn't save your like. Please try again.";
       }
@@ -63,11 +67,35 @@ export const useLikes = (postSlug: string) => {
     }
   };
 
-  onMounted(fetch);
+  // Real-time updates: reflect likes from other visitors without a reload.
+  const subscribe = () => {
+    pb.collection("likes").subscribe("*", (e) => {
+      if (e.record.post_slug !== postSlug) return;
+
+      if (e.action === "create") {
+        addId(e.record.id);
+        if (e.record.session_id === sessionId.value) myLikeId.value = e.record.id;
+      } else if (e.action === "delete") {
+        removeId(e.record.id);
+        if (myLikeId.value === e.record.id) myLikeId.value = null;
+      }
+    });
+  };
+
+  const unsubscribe = () => {
+    pb.collection("likes").unsubscribe("*");
+  };
+
+  onMounted(async () => {
+    await fetch();
+    subscribe();
+  });
+
+  onUnmounted(unsubscribe);
 
   return {
-    count: readonly(count),
-    liked: readonly(liked),
+    count,
+    liked,
     loading: readonly(loading),
     error: readonly(error),
     toggle,
