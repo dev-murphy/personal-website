@@ -72,7 +72,8 @@ const categories = computed<Record<string, BulletLegendItemInterface>>(() => {
   );
 });
 
-const multiSeries = computed(() => Object.keys(categories.value).length > 1);
+const seriesKeys = computed(() => Object.keys(categories.value));
+const multiSeries = computed(() => seriesKeys.value.length > 1);
 
 const xFormatter = (i: number) => String(rows.value[i]?.[indexKey.value] ?? "");
 const yFormatter = (value: number) =>
@@ -131,6 +132,7 @@ const yFormatter = (value: number) =>
           :data="rows"
           :height="height"
           :categories="categories"
+          :y-axis="seriesKeys"
           :x-formatter="xFormatter"
           :y-formatter="yFormatter"
           :y-num-ticks="4"

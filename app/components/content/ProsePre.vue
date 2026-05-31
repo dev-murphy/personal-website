@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { StyleValue } from "vue";
+
 const props = defineProps<{
   code?: string;
   language?: string;
@@ -6,7 +8,7 @@ const props = defineProps<{
   highlights?: number[];
   meta?: string;
   class?: string;
-  style?: unknown;
+  style?: StyleValue;
 }>();
 
 const copied = ref(false);
@@ -41,7 +43,7 @@ const label = computed(() => props.filename || props.language || "code");
         :aria-label="copied ? 'Copied' : 'Copy code'"
         @click="copy"
       >
-        <svg
+      <svg
           v-if="!copied"
           width="13"
           height="13"
