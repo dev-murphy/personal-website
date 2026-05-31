@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.1](https://github.com/dev-murphy/personal-website/compare/v1.3.0...v1.3.1) (2026-05-31)
+
+### 🐛 Bug Fixes
+
+* add blog link on landing page ([9e04209](https://github.com/dev-murphy/personal-website/commit/9e042094e361cfe8a89d2ac86df55a36444275c6))
+
+### ⚙️ CI/CD
+
+* add pocketbase env to compose file ([94758a8](https://github.com/dev-murphy/personal-website/commit/94758a84bb0af8eb8b0e96dda3ec47ee2a2922a5))
+
 ## [1.3.0](https://github.com/dev-murphy/personal-website/compare/v1.2.3...v1.3.0) (2026-05-31)
 
 ### ✨ Features
