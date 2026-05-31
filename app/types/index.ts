@@ -1,1 +1,1 @@
-export type { Comment, ReactionType } from "./blog";
+export type { Comment, Project, ReactionType } from "./blog";

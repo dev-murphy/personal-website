@@ -11,6 +11,7 @@ const sectionLinks = [
 ];
 
 const pageLinks = [
+  { label: "projects", href: "/projects" },
   { label: "blog", href: "/blog" },
   { label: "changelog", href: "/changelog" },
 ];

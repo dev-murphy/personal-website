@@ -20,38 +20,12 @@ const experiences = [
   },
 ];
 
-const projects = [
-  {
-    projectName: "ZenithCodes",
-    description:
-      "Personal portfolio and writing space — built with Nuxt 4, Tailwind v4, and Nuxt Content. Type-safe end-to-end with a focus on calm typography.",
-    techStack: ["Nuxt", "TypeScript", "Tailwind"],
-    sourceUrl: "https://github.com/dev-murphy/personal-website",
-  },
-  {
-    projectName: "Octo Euerka",
-    description:
-      "Octo Eureka is a sleek and intuitive to-do app designed to significantly boost your productivity. With its user-friendly interface, you can effortlessly manage tasks and achieve more by simply embracing the “just do it” mindset.",
-    techStack: ["Vue 3", "Pinia", "Vitest", "VueUse"],
-    sourceUrl: "https://github.com/dev-murphy/octo-eureka",
-    liveUrl: "https://octo-eureka.zenithcodes.xyz/",
-  },
-  {
-    projectName: "SDA Hymns App",
-    description:
-      "A web app for browsing and presenting Seventh-Day Adventist hymns. Built with Vue 3, Tailwind CSS, and Supabase.",
-    techStack: ["Vue 3", "Typescript", "Vue Router 5", "Supabase"],
-    sourceUrl: "https://github.com/dev-murphy/sda-hymns-app",
-    liveUrl: "https://sda-hymns.zenithcodes.xyz/",
-  },
-  {
-    projectName: "Pixel Palette",
-    description: "A modern, customizable color picker component for Vue 3.",
-    techStack: ["Vue", "TypeScript", "NPM"],
-    sourceUrl: "https://github.com/dev-murphy/pixel-palette",
-    liveUrl: "https://dev-murphy.github.io/pixel-palette/",
-  },
-];
+const { projects, logoUrl } = useProjects();
+
+// The home page only features pinned projects; the full catalog lives on /projects.
+const pinnedProjects = computed(() =>
+  projects.value.filter((p) => p.is_pinned && !p.is_archived),
+);
 
 useSeoMeta({
   title: "Murphy Facey — Frontend Developer",
@@ -187,17 +161,39 @@ useSeoMeta({
           number="03"
           kicker="Work"
           title="Projects"
-          :meta="`${projects.length} PROJECTS`"
+          :meta="`${pinnedProjects.length} FEATURED`"
         />
 
         <div class="pt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
           <FadeInSection
-            v-for="(project, index) in projects"
-            :key="`project-${index}`"
+            v-for="(project, index) in pinnedProjects"
+            :key="project.id"
             :delay="index * 80"
           >
-            <Project v-bind="project" />
+            <Project
+              :project-name="project.name"
+              :description="project.description"
+              :tech-stack="[...(project.tech_stack ?? [])]"
+              :source-url="project.source_url"
+              :live-url="project.live_url"
+              :logo-url="logoUrl(project)"
+              :source-private="project.source_private"
+              :types="[...(project.type ?? [])]"
+              :creation-date="project.creation_date"
+              :archived="project.is_archived"
+              :pinned="project.is_pinned"
+            />
           </FadeInSection>
+        </div>
+
+        <div class="pt-10 flex justify-center">
+          <NuxtLink
+            to="/projects"
+            class="inline-flex items-center gap-x-2 py-2 px-4 border border-border-100 rounded-md font-geist-mono text-sm text-text-200 hover:text-text-100 hover:border-text-200 transition-colors"
+          >
+            View all projects
+            <IconsArrowUpRight class="w-3.5 h-3.5" />
+          </NuxtLink>
         </div>
       </section>
 
