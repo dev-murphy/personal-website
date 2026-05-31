@@ -34,7 +34,7 @@ const projects = [
       "Octo Eureka is a sleek and intuitive to-do app designed to significantly boost your productivity. With its user-friendly interface, you can effortlessly manage tasks and achieve more by simply embracing the “just do it” mindset.",
     techStack: ["Vue 3", "Pinia", "Vitest", "VueUse"],
     sourceUrl: "https://github.com/dev-murphy/octo-eureka",
-    liveUrl: "https://octo-eureka.netlify.app/",
+    liveUrl: "https://octo-eureka.zenithcodes.xyz/",
   },
   {
     projectName: "SDA Hymns App",
@@ -42,7 +42,7 @@ const projects = [
       "A web app for browsing and presenting Seventh-Day Adventist hymns. Built with Vue 3, Tailwind CSS, and Supabase.",
     techStack: ["Vue 3", "Typescript", "Vue Router 5", "Supabase"],
     sourceUrl: "https://github.com/dev-murphy/sda-hymns-app",
-    liveUrl: "https://sda-hymns-app.vercel.app/",
+    liveUrl: "https://sda-hymns.zenithcodes.xyz/",
   },
   {
     projectName: "Pixel Palette",
