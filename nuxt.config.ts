@@ -24,6 +24,10 @@ if (existsSync(changelogSrc)) {
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  site: {
+    name: "ZenithCodes",
+  },
+
   modules: [
     "@nuxt/fonts",
     "@nuxt/image",
@@ -31,10 +35,40 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@vueuse/nuxt",
     "@nuxtjs/color-mode",
+    "nuxt-charts",
   ],
 
   // Assets
   css: ["~/assets/css/main.css"],
+
+  // Nuxt Content — dual-theme syntax highlighting that follows .dark-mode.
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: "github-light",
+            dark: "github-dark",
+          },
+          langs: [
+            "bash",
+            "sh",
+            "ts",
+            "js",
+            "json",
+            "vue",
+            "html",
+            "css",
+            "yaml",
+            "md",
+            "python",
+            "go",
+            "diff",
+          ],
+        },
+      },
+    },
+  },
 
   // Vite Config
   vite: {

@@ -54,6 +54,13 @@ html {
   animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Shiki dual-theme: default theme renders inline, swap to the dark theme's
+   CSS variables when the document carries color-mode's `.dark-mode` class. */
+.dark-mode .shiki,
+.dark-mode .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
 .dark-mode {
   --color-background-100: #090f0b;
   --color-background-200: #0f1814;
