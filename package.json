@@ -20,6 +20,7 @@
     "ioredis": "^5.11.0",
     "marked": "^18.0.4",
     "nuxt": "^4.4.6",
+    "nuxt-charts": "^2.1.4",
     "nuxt-schema-org": "^6.0.4",
     "playwright-core": "^1.60.0",
     "tailwindcss": "^4.3.0",
