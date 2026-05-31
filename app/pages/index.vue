@@ -256,15 +256,15 @@ useSeoMeta({
                 />
               </a> -->
 
-              <a
-                href="#blog"
+              <NuxtLink
+                to="/blog"
                 class="group flex items-center justify-between gap-x-3 px-4 py-3 font-geist-mono text-sm text-text-200 hover:text-text-100 transition-colors"
               >
                 read the blog
                 <IconsArrowUpRight
                   class="w-3.5 h-3.5 group-hover:text-primary transition-colors"
                 />
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </FadeInSection>
