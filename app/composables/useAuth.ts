@@ -14,9 +14,22 @@ export const useAuth = () => {
   });
 
   const loginWithGoogle = async () => {
-    const auth = await pb
-      .collection("users")
-      .authWithOAuth2({ provider: "google" });
+    // Pre-open a blank popup synchronously so Safari doesn't block it (this is
+    // what PocketBase's default urlCallback does internally).
+    const popup =
+      typeof window !== "undefined" ? window.open("", "_blank") : null;
+
+    const auth = await pb.collection("users").authWithOAuth2({
+      provider: "google",
+      // Append `prompt=select_account` to Google's consent URL so the account
+      // chooser always shows, instead of silently reusing the last session.
+      urlCallback: (url) => {
+        const target = new URL(url);
+        target.searchParams.set("prompt", "select_account");
+        if (popup) popup.location.href = target.href;
+        else window.location.href = target.href;
+      },
+    });
     user.value = auth.record;
     return auth;
   };
