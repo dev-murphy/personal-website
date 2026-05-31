@@ -5,6 +5,8 @@ export interface Comment extends RecordModel {
   post_slug: string;
   content: string;
   user: string;
+  /** When true, hide the author's name and show "Anonymous" instead. */
+  is_anonymous: boolean;
   expand?: {
     user: {
       id: string;

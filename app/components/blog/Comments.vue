@@ -7,6 +7,7 @@ const { user, isLoggedIn, logout } = useAuth();
 const { comments, loading, error, add, remove, update } = useComments(props.slug);
 
 const draft = ref("");
+const anonymous = ref(false);
 const submitting = ref(false);
 const submitError = ref<string | null>(null);
 
@@ -21,8 +22,9 @@ const submit = async () => {
   if (!draft.value.trim()) return;
   submitting.value = true;
   try {
-    await add(draft.value);
+    await add(draft.value, anonymous.value);
     draft.value = "";
+    anonymous.value = false;
   } catch (e: any) {
     submitError.value = e?.message || "Couldn't post your comment.";
   } finally {
@@ -110,7 +112,18 @@ const formatDate = (value: string) =>
             class="w-full resize-y rounded-md border border-border-100 bg-background-100/60 px-3 py-2 text-sm text-text-100 placeholder:text-text-300 focus:border-primary/50 focus:outline-none"
             :disabled="submitting"
           />
-          <div class="flex items-center justify-end">
+          <div class="flex items-center justify-between gap-x-3">
+            <label
+              class="flex cursor-pointer items-center gap-x-2 font-geist-mono text-xs text-text-300 select-none"
+            >
+              <input
+                v-model="anonymous"
+                type="checkbox"
+                class="h-3.5 w-3.5 rounded border-border-100 bg-background-100/60 text-primary accent-primary focus:outline-none"
+                :disabled="submitting"
+              />
+              Post anonymously
+            </label>
             <XButton
               as="button"
               type="submit"
@@ -153,13 +166,17 @@ const formatDate = (value: string) =>
           <div
             class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-100 bg-background-200 font-geist-mono text-sm text-text-200"
           >
-            {{ initial(comment.expand?.user?.name) }}
+            {{ comment.is_anonymous ? "?" : initial(comment.expand?.user?.name) }}
           </div>
 
           <div class="min-w-0 flex-1">
             <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
               <span class="text-sm font-medium text-text-100">
-                {{ comment.expand?.user?.name || "Anonymous" }}
+                {{
+                  comment.is_anonymous
+                    ? "Anonymous"
+                    : comment.expand?.user?.name || "Anonymous"
+                }}
               </span>
               <span class="font-geist-mono text-[11px] text-text-300">
                 {{ formatDate(comment.created) }}

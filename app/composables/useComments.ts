@@ -25,15 +25,20 @@ export const useComments = (postSlug: string) => {
     }
   };
 
-  const add = async (content: string) => {
+  const add = async (content: string, isAnonymous = false) => {
     if (!isLoggedIn.value) throw new Error("Must be logged in to comment");
-    if (!content.trim()) throw new Error("Comment cannot be empty");
+    const trimmed = content.trim();
+    if (!trimmed) throw new Error("Comment cannot be empty");
+
+    const spam = checkSpam(trimmed);
+    if (spam.isSpam) throw new Error(spam.reason!);
 
     const record = await pb.collection("comments").create<Comment>(
       {
         post_slug: postSlug,
-        content: content.trim(),
+        content: censorProfanity(trimmed),
         user: user.value!.id,
+        is_anonymous: isAnonymous,
       },
       { expand: "user" },
     );
@@ -51,12 +56,16 @@ export const useComments = (postSlug: string) => {
 
   const update = async (commentId: string, content: string) => {
     if (!isLoggedIn.value) throw new Error("Must be logged in");
-    if (!content.trim()) throw new Error("Comment cannot be empty");
+    const trimmed = content.trim();
+    if (!trimmed) throw new Error("Comment cannot be empty");
+
+    const spam = checkSpam(trimmed);
+    if (spam.isSpam) throw new Error(spam.reason!);
 
     const record = await pb.collection("comments").update<Comment>(
       commentId,
       {
-        content: content.trim(),
+        content: censorProfanity(trimmed),
       },
       { expand: "user" },
     );
