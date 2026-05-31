@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.3](https://github.com/dev-murphy/personal-website/compare/v1.3.2...v1.3.3) (2026-05-31)
+
+### 🧹 Miscellaneous
+
+* update octo eureka and sda hymns live site urls ([7ec8a26](https://github.com/dev-murphy/personal-website/commit/7ec8a268b102a3996fdaa7861e1ea19b6d620f54))
+
+### 🔨 Code Refactors
+
+* use localStorage instead of sessionStorage for session management ([0d764e2](https://github.com/dev-murphy/personal-website/commit/0d764e274d2ba91eda39a86b7aa06193456d2866))
+
 ## [1.3.2](https://github.com/dev-murphy/personal-website/compare/v1.3.1...v1.3.2) (2026-05-31)
 
 ### 🐛 Bug Fixes
