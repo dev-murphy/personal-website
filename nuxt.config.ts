@@ -41,8 +41,8 @@ export default defineNuxtConfig({
   // Runtime Config
   runtimeConfig: {
     public: {
-      pocketbaseUrl: process.env.POCKETBASE_URL
-    }
+      pocketbaseUrl: "",
+    },
   },
 
   // Assets

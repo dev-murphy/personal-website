@@ -18,6 +18,11 @@ export const usePocketbase = (): PocketBase => {
     const {
       public: { pocketbaseUrl },
     } = useRuntimeConfig();
+    if (!pocketbaseUrl) {
+      throw new Error(
+        "pocketbaseUrl runtime config is empty — set NUXT_PUBLIC_POCKETBASE_URL in the deployment environment.",
+      );
+    }
     nuxtApp._pb = new PocketBase(pocketbaseUrl);
   }
   return nuxtApp._pb as PocketBase;
