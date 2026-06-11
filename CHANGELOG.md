@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.1](https://github.com/dev-murphy/personal-website/compare/v1.5.0...v1.5.1) (2026-06-11)
+
+### 🧹 Miscellaneous
+
+* add plausible analytics to project ([8296af6](https://github.com/dev-murphy/personal-website/commit/8296af67e93561455cda284fd1e5eef98687f237))
+
 ## [1.5.0](https://github.com/dev-murphy/personal-website/compare/v1.4.0...v1.5.0) (2026-05-31)
 
 ### ✨ Features
