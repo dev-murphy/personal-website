@@ -95,6 +95,13 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
+      script: [
+        {
+          defer: true,
+          "data-domain": "me.zenithcodes.xyz",
+          src: "https://stats.zenithcodes.xyz/js/script.js",
+        },
+      ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         {
