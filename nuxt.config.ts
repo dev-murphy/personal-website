@@ -24,6 +24,7 @@ if (existsSync(changelogSrc)) {
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+
   site: {
     name: "ZenithCodes",
   },
@@ -36,6 +37,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/color-mode",
     "nuxt-charts",
+    "@sentry/nuxt/module"
   ],
 
   // Runtime Config
@@ -124,4 +126,13 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  sentry: {
+    org: "zenithcodes",
+    project: "javascript-nuxt"
+  },
+
+  sourcemap: {
+    client: "hidden"
+  }
 });
