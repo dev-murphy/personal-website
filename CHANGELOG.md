@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.1](https://github.com/dev-murphy/personal-website/compare/v1.6.0...v1.6.1) (2026-06-11)
+
+### 🧹 Miscellaneous
+
+* remove sentry example test routes ([bfe6deb](https://github.com/dev-murphy/personal-website/commit/bfe6deb19b23c0656288b7a7a770bc4f241b29ba))
+
 ## [1.6.0](https://github.com/dev-murphy/personal-website/compare/v1.5.2...v1.6.0) (2026-06-11)
 
 ### ✨ Features
