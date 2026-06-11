@@ -13,16 +13,22 @@ const archivedOnly = ref(false);
 // On small screens the filter sidebar collapses into a toggleable panel.
 const filtersOpen = ref(false);
 
+const posthog = usePostHog();
+
 const toggleTech = (value: string) => {
-  selectedTech.value = selectedTech.value.includes(value)
-    ? selectedTech.value.filter((v) => v !== value)
-    : [...selectedTech.value, value];
+  const isAdding = !selectedTech.value.includes(value);
+  selectedTech.value = isAdding
+    ? [...selectedTech.value, value]
+    : selectedTech.value.filter((v) => v !== value);
+  posthog?.capture("project_filter_applied", { filter_type: "tech", filter_value: value, action: isAdding ? "add" : "remove" });
 };
 
 const toggleType = (value: string) => {
-  selectedTypes.value = selectedTypes.value.includes(value)
-    ? selectedTypes.value.filter((v) => v !== value)
-    : [...selectedTypes.value, value];
+  const isAdding = !selectedTypes.value.includes(value);
+  selectedTypes.value = isAdding
+    ? [...selectedTypes.value, value]
+    : selectedTypes.value.filter((v) => v !== value);
+  posthog?.capture("project_filter_applied", { filter_type: "type", filter_value: value, action: isAdding ? "add" : "remove" });
 };
 
 const clearFilters = () => {

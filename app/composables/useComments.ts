@@ -3,6 +3,7 @@ import type { Comment } from "~/types";
 export const useComments = (postSlug: string) => {
   const pb = usePocketbase();
   const { user, isLoggedIn } = useAuth();
+  const posthog = usePostHog();
 
   const comments = ref<Comment[]>([]);
   const loading = ref(false);
@@ -44,6 +45,7 @@ export const useComments = (postSlug: string) => {
     );
 
     comments.value.unshift(record);
+    posthog?.capture("blog_comment_submitted", { post_slug: postSlug, is_anonymous: isAnonymous });
     return record;
   };
 

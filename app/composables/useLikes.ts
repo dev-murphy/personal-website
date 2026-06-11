@@ -1,6 +1,7 @@
 export const useLikes = (postSlug: string) => {
   const pb = usePocketbase();
   const sessionId = useBlogSession();
+  const posthog = usePostHog();
 
   // Track like record ids in a Set so an optimistic write and its realtime
   // echo collapse to a single entry — the count is always the set size and can
@@ -45,6 +46,7 @@ export const useLikes = (postSlug: string) => {
         await pb.collection("likes").delete(id);
         removeId(id);
         myLikeId.value = null;
+        posthog?.capture("blog_post_unliked", { post_slug: postSlug });
       } else {
         const record = await pb.collection("likes").create({
           post_slug: postSlug,
@@ -52,6 +54,7 @@ export const useLikes = (postSlug: string) => {
         });
         addId(record.id);
         myLikeId.value = record.id;
+        posthog?.capture("blog_post_liked", { post_slug: postSlug });
       }
     } catch (e: any) {
       // Duplicate key = already liked — resync rather than surface an error.

@@ -2,6 +2,7 @@ import type { RecordModel } from "pocketbase";
 
 export const useAuth = () => {
   const pb = usePocketbase();
+  const posthog = usePostHog();
 
   const user = useState<RecordModel | null>(
     "auth_user",
@@ -31,6 +32,8 @@ export const useAuth = () => {
       },
     });
     user.value = auth.record;
+    posthog?.identify(auth.record.id, { email: auth.record.email, name: auth.record.name });
+    posthog?.capture("user_logged_in", { provider: "google" });
     return auth;
   };
 
@@ -47,12 +50,16 @@ export const useAuth = () => {
   const verifyMagicCode = async (otpId: string, code: string) => {
     const auth = await pb.collection("users").authWithOTP(otpId, code);
     user.value = auth.record;
+    posthog?.identify(auth.record.id, { email: auth.record.email, name: auth.record.name });
+    posthog?.capture("user_logged_in", { provider: "magic_code" });
     return auth;
   };
 
   const logout = () => {
     pb.authStore.clear();
     user.value = null;
+    posthog?.capture("user_logged_out");
+    posthog?.reset();
   };
 
   return {

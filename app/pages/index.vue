@@ -32,6 +32,8 @@ useSeoMeta({
   description:
     "Frontend developer building fast, quiet interfaces for ambitious teams.",
 });
+
+const posthog = usePostHog();
 </script>
 
 <template>
@@ -92,7 +94,7 @@ useSeoMeta({
           class="hero-rise flex flex-wrap gap-x-3 gap-y-2 mt-8"
           style="animation-delay: 500ms"
         >
-          <XButton variant="primary" as="a" href="#work">
+          <XButton variant="primary" as="a" href="#work" @click="posthog?.capture('hero_cta_clicked')">
             Start a project
             <IconsArrowUpRight class="w-3.5 h-3.5" />
           </XButton>
@@ -101,6 +103,7 @@ useSeoMeta({
             as="a"
             href="https://github.com/dev-murphy"
             target="_blank"
+            @click="posthog?.capture('github_link_clicked', { location: 'hero' })"
           >
             <IconsGithub class="w-4 h-4" />
             GitHub
@@ -190,6 +193,7 @@ useSeoMeta({
           <NuxtLink
             to="/projects"
             class="inline-flex items-center gap-x-2 py-2 px-4 border border-border-100 rounded-md font-geist-mono text-sm text-text-200 hover:text-text-100 hover:border-text-200 transition-colors"
+            @click="posthog?.capture('view_all_projects_clicked')"
           >
             View all projects
             <IconsArrowUpRight class="w-3.5 h-3.5" />
@@ -228,6 +232,7 @@ useSeoMeta({
               <a
                 href="mailto:hello@zenithcodes.xyz"
                 class="group flex items-center justify-between gap-x-3 px-4 py-3 bg-background-200 border border-border-100 rounded-md font-geist-mono text-sm text-text-100 hover:border-primary/40 transition-colors"
+                @click="posthog?.capture('contact_email_clicked')"
               >
                 <span class="flex items-center gap-x-2.5">
                   <IconsMail class="w-3.5 h-3.5 text-text-300" />

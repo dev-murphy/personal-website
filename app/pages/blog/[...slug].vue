@@ -1,5 +1,6 @@
 <script setup>
 const route = useRoute();
+const posthog = usePostHog();
 
 const { data: post } = await useAsyncData(`blog-${route.path}`, () =>
   queryCollection("blog").path(route.path).first(),
@@ -47,6 +48,14 @@ function formatDate(date) {
 useSeoMeta({
   title: () => `${post.value?.title} — Murphy Facey`,
   description: () => post.value?.description,
+});
+
+onMounted(() => {
+  posthog?.capture("blog_post_viewed", {
+    post_slug: post.value?.path,
+    post_title: post.value?.title,
+    post_category: post.value?.category,
+  });
 });
 </script>
 
@@ -206,6 +215,7 @@ useSeoMeta({
             :key="item.path"
             :to="item.path"
             class="group flex flex-col rounded-lg border border-border-100 bg-background-200/40 p-5 transition-colors hover:border-primary/40"
+            @click="posthog?.capture('related_post_clicked', { from_slug: post?.path, to_slug: item.path, to_title: item.title })"
           >
             <span
               v-if="item.category"

@@ -45,6 +45,8 @@ const visibleCount = computed(() =>
 const visibleTech = computed(() => orderedTech.value.slice(0, visibleCount.value));
 
 const hiddenTech = computed(() => orderedTech.value.slice(visibleCount.value));
+
+const posthog = usePostHog();
 </script>
 
 <template>
@@ -70,6 +72,7 @@ const hiddenTech = computed(() => orderedTech.value.slice(visibleCount.value));
         target="_blank"
         class="shrink-0"
         aria-label="View source"
+        @click="posthog?.capture('project_source_clicked', { project_name: projectName, source_url: sourceUrl })"
       >
         <IconsArrowUpRight
           class="w-4 h-4 text-text-300 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
@@ -168,6 +171,7 @@ const hiddenTech = computed(() => orderedTech.value.slice(visibleCount.value));
         :href="liveUrl"
         target="_blank"
         class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+        @click="posthog?.capture('project_live_site_clicked', { project_name: projectName, live_url: liveUrl })"
       >
         <span>Live Site</span>
         <IconsArrowUpRight class="w-3 h-3" />

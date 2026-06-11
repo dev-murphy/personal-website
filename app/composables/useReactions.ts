@@ -21,6 +21,7 @@ const EMPTY_COUNTS = (): Record<ReactionType, number> => ({
 export const useReactions = (postSlug: string) => {
   const pb = usePocketbase();
   const sessionId = useBlogSession();
+  const posthog = usePostHog();
 
   // record id -> reaction type, for every reaction on this post. Keying by id
   // makes optimistic writes and their realtime echoes idempotent (no double
@@ -89,6 +90,7 @@ export const useReactions = (postSlug: string) => {
         await pb.collection("reactions").delete(myId);
         deleteRecord(myId);
         deleteMine(type);
+        posthog?.capture("blog_post_reaction_removed", { post_slug: postSlug, reaction_type: type });
       } else {
         const record = await pb.collection("reactions").create({
           post_slug: postSlug,
@@ -97,6 +99,7 @@ export const useReactions = (postSlug: string) => {
         });
         setRecord(record.id, type);
         setMine(type, record.id);
+        posthog?.capture("blog_post_reaction_added", { post_slug: postSlug, reaction_type: type });
       }
     } catch (e: any) {
       error.value = myId

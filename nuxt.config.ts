@@ -37,13 +37,30 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/color-mode",
     "nuxt-charts",
-    "@sentry/nuxt/module"
+    "@sentry/nuxt/module",
+    "@posthog/nuxt",
   ],
 
   // Runtime Config
   runtimeConfig: {
     public: {
       pocketbaseUrl: "",
+      posthog: {
+        publicKey: process.env.NUXT_PUBLIC_POSTHOG_PROJECT_TOKEN || "",
+        host: process.env.NUXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+      },
+    },
+  },
+
+  posthogConfig: {
+    publicKey: process.env.NUXT_PUBLIC_POSTHOG_PROJECT_TOKEN || "",
+    host: process.env.NUXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+    clientConfig: {
+      capture_exceptions: true,
+      __add_tracing_headers: ["localhost", "me.zenithcodes.xyz"],
+    },
+    serverConfig: {
+      enableExceptionAutocapture: true,
     },
   },
 
