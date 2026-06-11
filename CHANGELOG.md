@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.6.0](https://github.com/dev-murphy/personal-website/compare/v1.5.2...v1.6.0) (2026-06-11)
+
+### ✨ Features
+
+* add posthog product analytics ([dca1cea](https://github.com/dev-murphy/personal-website/commit/dca1cea0474d0cba6a1e1541a199f816b825ef2a))
+
+### 🧹 Miscellaneous
+
+* add sentry example test routes ([cc66d00](https://github.com/dev-murphy/personal-website/commit/cc66d000d4281060f40d617ebdc5c0f41fbd9d8a))
+
 ## [1.5.2](https://github.com/dev-murphy/personal-website/compare/v1.5.1...v1.5.2) (2026-06-11)
 
 ### 🧹 Miscellaneous
