@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.2](https://github.com/dev-murphy/personal-website/compare/v1.6.1...v1.6.2) (2026-06-21)
+
+### 🧹 Miscellaneous
+
+* replace plausible analytics with zenithcodes stats script ([33ba8f5](https://github.com/dev-murphy/personal-website/commit/33ba8f55f5cdce347a33362dcdffb89e868bd474))
+
 ## [1.6.1](https://github.com/dev-murphy/personal-website/compare/v1.6.0...v1.6.1) (2026-06-11)
 
 ### 🧹 Miscellaneous
