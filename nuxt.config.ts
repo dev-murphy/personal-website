@@ -117,8 +117,8 @@ export default defineNuxtConfig({
       script: [
         {
           defer: true,
-          "data-domain": "me.zenithcodes.xyz",
-          src: "https://stats.zenithcodes.xyz/js/script.js",
+          src: "https://stats.zenithcodes.xyz/script.js",
+          "data-website-id": "db74f217-b1c1-482f-82a3-f62f4a2b75f9",
         },
       ],
       link: [
